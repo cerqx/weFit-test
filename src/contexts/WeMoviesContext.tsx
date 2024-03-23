@@ -1,6 +1,7 @@
+import { createContext } from "react";
+
 import { ProductEntity } from "@/entities/Product";
 import { useProducts } from "@/hooks/useProducts";
-import { createContext } from "react";
 
 interface WeMoviesContextValue {
     products: ProductEntity[];

@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
+
 import { ProductEntity } from "@/entities/Product";
 import { productsService } from "@/services/productsService";
-import { useEffect, useState } from "react";
 
 export function useProducts() {
     const [products, setProducts] = useState<ProductEntity[]>([]);
