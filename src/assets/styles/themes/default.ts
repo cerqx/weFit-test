@@ -1,4 +1,4 @@
-import { Theme } from "@/types";
+import { Theme } from "@/types/ThemeInterface";
 
 export const theme: Theme = {
     colors: {
