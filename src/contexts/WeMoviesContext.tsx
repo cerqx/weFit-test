@@ -16,6 +16,8 @@ interface WeMoviesContextValue {
   handleRemoveProductFromCart(id: number): void;
   resetCart(): void;
   isLoading: boolean;
+  selectedProduct: ProductEntity;
+  handleSelectProduct(product: ProductEntity): void;
 }
 
 export const WeMoviesContext = createContext({} as WeMoviesContextValue);
@@ -23,6 +25,7 @@ export const WeMoviesContext = createContext({} as WeMoviesContextValue);
 export function WeMoviesProvider({children}: {children: React.ReactNode}) {
   const { products, getProducts, isLoading } = useProducts();
   const [cartItems, setCartItems] = useState<Cart[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<ProductEntity>({} as ProductEntity);
 
   const handleAddProductToCart = useCallback((product: ProductEntity) => {
     setCartItems(prevState => {
@@ -77,6 +80,10 @@ export function WeMoviesProvider({children}: {children: React.ReactNode}) {
     }, 0);
   }, []);
 
+  function handleSelectProduct(product: ProductEntity) {
+    setSelectedProduct(product);
+  }
+
   function handleRemoveProductFromCart(id: number) {
     setCartItems(prevState => {
         return prevState.filter(item => item.id !== id)
@@ -103,7 +110,9 @@ export function WeMoviesProvider({children}: {children: React.ReactNode}) {
       subTotalAmount,
       totalAmount,
       resetCart,
-      isLoading
+      isLoading,
+      handleSelectProduct,
+      selectedProduct,
     }}
     >
       {children}

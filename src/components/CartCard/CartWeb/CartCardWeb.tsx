@@ -1,21 +1,34 @@
-import { useNavigate } from "react-router-dom";
-
 import { MinusIcon } from "@/assets/icons/MinusIcon";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
 import { TrashIcon } from "@/assets/icons/TrashIcon";
 import { Button } from "@/components/Button";
 import { useWeMovies } from "@/hooks/useWeMovies";
+import { Modal } from "@/components/Modal";
 
 import { ProductImage } from "../../ProductImage";
+import { useCartCardController } from "../useCartCardController";
 
 import { StyledContainer, StyledCartHeader, StyledProductContainer, StyledProductNameAndPrice } from "./style";
 import { StyledCartItem, StyledCounterProductQuantity, StyledDivider, StyledFooter, StyledNameText, StyledProductQuantity, StyledSubTotalText, StyledTotal, StyledTotalPriceText, StyledTotalText } from "../style";
 
 export function CartCardWeb() {
-  const navigate = useNavigate();
-  const { cartItems, handleAddProductToCart, handleDecreaseProductFromCart, totalAmount, subTotalAmount,  handleRemoveProductFromCart  } = useWeMovies();
-  const total = totalAmount(cartItems);
+  const {
+    cartItems,
+    handleAddProductToCart,
+    handleDecreaseProductFromCart,
+    subTotalAmount,
+    handleRemoveProductFromCart,
+    selectedProduct
+  } = useWeMovies();
+  
+  const {
+    isModalOpen,
+    openModal,
+    handleCloseModal,
+    navigate,
+    total
+  } = useCartCardController();
 
   return (
     <StyledContainer>
@@ -48,7 +61,7 @@ export function CartCardWeb() {
           </StyledProductQuantity>
           <StyledSubTotalText>{formatCurrency(subTotalAmount(item.quantity, item.price))}</StyledSubTotalText>
                 
-          <div style={{cursor: 'pointer'}} onClick={() => handleRemoveProductFromCart(item.id)}>
+          <div style={{cursor: 'pointer'}} onClick={() => openModal(item)}>
             <TrashIcon />
           </div>
         </StyledCartItem>
@@ -63,6 +76,15 @@ export function CartCardWeb() {
           <StyledTotalPriceText>{formatCurrency(total)}</StyledTotalPriceText>
         </StyledTotal>
       </StyledFooter>
+
+      {isModalOpen && (
+        <Modal
+          movieName={selectedProduct.title}
+          isVisible={isModalOpen}
+          onCancel={handleCloseModal}
+          onConfirm={() => handleRemoveProductFromCart(selectedProduct.id)}
+        />
+      )}
     </StyledContainer>
   )
 }

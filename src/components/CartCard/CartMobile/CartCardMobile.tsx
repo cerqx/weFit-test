@@ -1,21 +1,34 @@
-import { useNavigate } from "react-router-dom";
-
 import { TrashIcon } from "@/assets/icons/TrashIcon";
 import { MinusIcon } from "@/assets/icons/MinusIcon";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
 import { Button } from "@/components/Button";
 import { useWeMovies } from "@/hooks/useWeMovies";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { Modal } from "@/components/Modal";
 
 import { ProductImage } from "../../ProductImage";
+import { useCartCardController } from "../useCartCardController";
 
 import { StyledCartItemMobile, StyledProductsDetailsMobile, StyledProductNameAndPriceMobile, StyledQuantityAndSubTotalMobile, StyledContainerMobile, StyledSubTotalPriceMobile, StyledSubtotalAndTrashIconContainerMobile } from "./style";
 import { StyledCounterProductQuantity, StyledDivider, StyledFooter, StyledNameText, StyledProductQuantity, StyledSubTotalText, StyledTotal, StyledTotalPriceText, StyledTotalText } from "../style";
 
 export function CartCardMobile() {
-  const navigate = useNavigate();
-  const { cartItems, handleAddProductToCart, handleDecreaseProductFromCart, totalAmount, subTotalAmount,  handleRemoveProductFromCart  } = useWeMovies();
-  const total = totalAmount(cartItems);
+  const {
+    cartItems,
+    handleAddProductToCart,
+    handleDecreaseProductFromCart,
+    subTotalAmount,
+    handleRemoveProductFromCart,
+    selectedProduct
+  } = useWeMovies();
+
+  const {
+    isModalOpen,
+    openModal,
+    handleCloseModal,
+    navigate,
+    total
+  } = useCartCardController();
 
   return (
     <StyledContainerMobile>
@@ -28,7 +41,7 @@ export function CartCardMobile() {
 
               <StyledSubtotalAndTrashIconContainerMobile>
                 <StyledSubTotalText>{formatCurrency(item.price)}</StyledSubTotalText>
-                <div onClick={() => handleRemoveProductFromCart(item.id)}>
+                <div onClick={() => openModal(item)}>
                     <TrashIcon />
                 </div>
               </StyledSubtotalAndTrashIconContainerMobile>
@@ -65,6 +78,15 @@ export function CartCardMobile() {
         </StyledTotal>
         <Button onClick={() => navigate('/completed-purchase')}>FINALIZAR PEDIDO</Button>
       </StyledFooter>
+
+      {isModalOpen && (
+        <Modal
+          movieName={selectedProduct.title}
+          isVisible={isModalOpen}
+          onCancel={handleCloseModal}
+          onConfirm={() => handleRemoveProductFromCart(selectedProduct.id)}
+        />
+      )}
     </StyledContainerMobile>
   )
 }

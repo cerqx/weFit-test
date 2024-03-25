@@ -1,4 +1,4 @@
-import { GetProductsInterface } from "@/types/GetProductsInterface";
+import { GetProductsInterface } from "@/@types/GetProductsInterface";
 
 import { httpClient } from "../HttpClient";
 
