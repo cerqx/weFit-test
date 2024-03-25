@@ -74,6 +74,10 @@ export const StyledModalContainer = styled.div<{$isLeaving: boolean}>`
     css`
       animation: ${scaleOut} 0.2s forwards;
     `}
+
+  @media (max-width: 600px) {
+  margin: 0 16px;
+  }
 `;
 
 export const StyledModalTitle = styled.p`
