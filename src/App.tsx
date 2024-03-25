@@ -4,6 +4,7 @@ import { theme } from './assets/styles/themes/default';
 import GlobalStyles from './assets/styles/global'
 import { Router } from './Router';
 import { WeMoviesProvider } from './contexts/WeMoviesContext';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <WeMoviesProvider>
         <GlobalStyles />
         <Router />
+        <Toaster />
       </WeMoviesProvider>
     </ThemeProvider>
   )

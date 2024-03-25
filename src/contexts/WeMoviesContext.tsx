@@ -3,6 +3,7 @@ import { createContext, useCallback, useState } from "react";
 import { ProductEntity } from "@/entities/Product";
 import { useProducts } from "@/hooks/useProducts";
 import { Cart } from "@/entities/Cart";
+import toast from "react-hot-toast";
 
 interface WeMoviesContextValue {
   products: ProductEntity[];
@@ -28,6 +29,7 @@ export function WeMoviesProvider({children}: {children: React.ReactNode}) {
   const [selectedProduct, setSelectedProduct] = useState<ProductEntity>({} as ProductEntity);
 
   const handleAddProductToCart = useCallback((product: ProductEntity) => {
+    toast.success('Filme adicionado com sucesso!')
     setCartItems(prevState => {
       const cartItems = [...prevState];
       const findIndex = cartItems.findIndex(item => item.id === product.id);
@@ -85,6 +87,7 @@ export function WeMoviesProvider({children}: {children: React.ReactNode}) {
   }
 
   function handleRemoveProductFromCart(id: number) {
+    toast.success('Filme removido com sucesso!')
     setCartItems(prevState => {
         return prevState.filter(item => item.id !== id)
     })

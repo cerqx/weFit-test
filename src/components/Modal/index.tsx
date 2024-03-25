@@ -30,7 +30,7 @@ export function Modal({ isVisible, onCancel, onConfirm, movieName, ...props }: M
               Cancelar
             </button>
 
-            <Button style={{width: '200px'}} buttonFn={onConfirm}>
+            <Button style={{width: '200px', background: '#FE3F61'}} buttonFn={onConfirm}>
               Deletar
             </Button>
           </StyledModalFooter>
