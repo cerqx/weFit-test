@@ -4,19 +4,28 @@ import { ProductEntity } from "@/entities/Product";
 import { productsService } from "@/services/productsService";
 
 export function useProducts() {
-    const [products, setProducts] = useState<ProductEntity[]>([]);
+  const [products, setProducts] = useState<ProductEntity[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    async function getProducts() {
-        const data = await productsService.getAllProducts();
-        setProducts(data);
+  async function getProducts() {
+    try {
+      setIsLoading(true);
+      const data = await productsService.getAllProducts();
+      setProducts(data);
+    } catch (err) {
+        //
+    } finally {
+      setIsLoading(false);
     }
+  }
 
-    useEffect(() => {
-        getProducts();
-    }, [])
+  useEffect(() => {
+    getProducts();
+  }, [])
 
-    return {
-        products,
-        setProducts
-    }
+  return {
+    products,
+    getProducts,
+    isLoading
+  }
 }

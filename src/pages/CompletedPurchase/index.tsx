@@ -1,5 +1,11 @@
+import { CompletedPurchaseComponent } from "@/components/CompletedPurchase";
+
+import { useCompletedPurchaseController } from "./useCompletedPurchaseController";
+
+
 export function CompletedPurchase() {
-    return (
-        <h1>Completed Purchase</h1>
-    )
+  const { navigate } = useCompletedPurchaseController();
+  return (
+    <CompletedPurchaseComponent buttonFn={() => navigate('/')} />
+  )
 }

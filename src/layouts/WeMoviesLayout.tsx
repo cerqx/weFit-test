@@ -1,11 +1,12 @@
-import { Header } from "@/components/Header";
 import { Outlet } from "react-router-dom";
 
+import { Header } from "@/components/Header";
+
 export function WeMoviesLayout() {
-    return (
-        <>
-        <Header />
-        <Outlet />
-        </>
-    )
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  )
 }
