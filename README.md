@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+# Teste Front-end WeFit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido como parte do processo seletivo para a vaga de desenvolvedor(a) front-end na WeFit. O objetivo principal era criar um simples e-commerce utilizando ReactJS, styled-components, e TypeScript. O aplicativo é composto por três telas principais: Home, Carrinho e Compra Realizada.
 
-Currently, two official plugins are available:
+## 🚀 Começando
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para executar este projeto localmente, siga estas etapas.
 
-## Expanding the ESLint configuration
+### Pré-requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
 
-- Configure the top-level `parserOptions` property like this:
+### 🛠 Instalação
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Clone o repositório para ter uma cópia do código fonte em sua máquina local:
+
+```bash
+git clone https://github.com/cerqx/weFit-test.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Navegue até o diretório do projeto:
+
+```bash
+cd weFit-test
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+ou se você prefere usar Yarn:
+
+```bash
+yarn
+```
+
+### 🚀 Executando
+
+Para iniciar o servidor de desenvolvimento, execute:
+
+```bash
+npm start
+```
+
+ou se você está usando Yarn:
+
+```bash
+yarn start
+```
+
+Isso executará o aplicativo no modo de desenvolvimento. Abra [http://localhost:5173](http://localhost:5173) para visualizá-lo no navegador.
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [ReactJS](https://pt-br.reactjs.org/)
+- [styled-components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/)
