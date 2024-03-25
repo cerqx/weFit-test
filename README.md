@@ -43,13 +43,13 @@ yarn
 Para iniciar o servidor de desenvolvimento, execute:
 
 ```bash
-npm start
+npm run dev
 ```
 
 ou se você está usando Yarn:
 
 ```bash
-yarn start
+yarn dev
 ```
 
 Isso executará o aplicativo no modo de desenvolvimento. Abra [http://localhost:5173](http://localhost:5173) para visualizá-lo no navegador.
